@@ -95,8 +95,9 @@ def yangTriangleNew(n):
             list2.append(old + x)
             old = x
         list2.append(1)
-        i,list1 = i + 1,list2
+        i, list1 = i + 1, list2
         yield list1
+
 
 sds = yangTriangleNew(10)
 
@@ -107,39 +108,71 @@ for dd in sds:
 def hignFunction(x, y, f):
     return f(x) + f(y)
 
-print(hignFunction(-10,10,abs))
 
-ll = map(str,[1,-2,3,4])
+print(hignFunction(-10, 10, abs))
+
+ll = map(str, [1, -2, 3, 4])
 print(list(ll))
 
 from functools import reduce
 
 
+def add(x, y):
+    return x + y
 
-
-def add (x, y):
-    return  x +y
 
 def squ(x):
     return x * x
+
+
 def gt2(x):
-    return  x > 2
+    return x > 2
 
-print(reduce(add,filter(gt2, map( squ,[1,2,3,4]))))
 
+print(reduce(add, filter(gt2, map(squ, [1, 2, 3, 4]))))
 
 
 def retrunFunction(*params):
     def inneriFunction():
         re = 0
         for x in params:
-            re  = re + x
+            re = re + x
         return re
+
     return inneriFunction
 
 
-
-sds = retrunFunction(1,2,3)
+sds = retrunFunction(1, 2, 3)
 
 print(sds)
 print(sds())
+
+outer = 10
+
+
+def testClosure():
+    inner = outer
+
+    def add10():
+        return inner + 10
+
+    return add10
+
+
+sdsd = testClosure()
+outer = 40
+print(sdsd())
+
+
+def _testPrtitial(x, *,y):
+    return -1*x + y
+
+
+
+
+from functools  import partial
+
+sdsd = partial(_testPrtitial, x=100)
+
+print(sdsd(y =12))
+
